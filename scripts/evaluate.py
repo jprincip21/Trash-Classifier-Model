@@ -12,7 +12,6 @@ IMG_WIDTH = 256
 BATCH_SIZE = 16
 TEST_DIR = "data/testing"
 
-class_names = sorted(os.listdir(TEST_DIR))  # Use folders in 'testing' as class names
 # Load Model
 loaded_model = keras.models.load_model("models/trash-classifier-model-v0_1.keras")
 
@@ -30,7 +29,7 @@ test_loss, test_acc = loaded_model.evaluate(ds_test, verbose=2)
 print(test_acc)
 print(test_loss)
 
-# Optionally: predict and print class probabilities for a batch
+# predict and print class probabilities for a batch
 for images, labels in ds_test.take(1):
     predictions = loaded_model.predict(images)
     print("Predictions shape:", predictions.shape)

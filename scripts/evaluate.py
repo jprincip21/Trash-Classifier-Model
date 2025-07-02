@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 # Constanst
 IMG_HEIGHT = 256
 IMG_WIDTH = 256
-BATCH_SIZE = 16
+BATCH_SIZE = 1
 TEST_DIR = "data/testing"
 
 # Load Model
@@ -25,18 +25,16 @@ ds_test = keras.preprocessing.image_dataset_from_directory(
     shuffle=False
 )
 
-test_loss, test_acc = loaded_model.evaluate(ds_test, verbose=2)
-print(test_acc)
-print(test_loss)
+class_names = ds_test.class_names
 
-# predict and print class probabilities for a batch
-for images, labels in ds_test.take(1):
+test_loss, test_acc = loaded_model.evaluate(ds_test, verbose=2)
+print("Accuracy: ", test_acc)
+print("Loss: ", test_loss)
+
+# Predict and display results
+for images, labels in ds_test.take(6):
     predictions = loaded_model.predict(images)
-    print("Predictions shape:", predictions.shape)
-    print("Predictions for first 5 images:")
-    print(predictions[:5])
-    predicted_classes = np.argmax(predictions, axis=1)
-    print(predicted_classes)
-    print("True labels for first 5 images:")
-    print(labels[:5].numpy())
-    
+    predicted_class_idx = np.argmax(predictions, axis=1)[0]
+    true_class_idx = np.argmax(labels.numpy(), axis=1)[0]
+
+    print(f"Predicted: {class_names[predicted_class_idx]}, True: {class_names[true_class_idx]}")

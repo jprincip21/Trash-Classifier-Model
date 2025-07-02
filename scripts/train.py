@@ -46,12 +46,12 @@ base_model = keras.applications.MobileNetV2(
 base_model.trainable = False
 
 model = keras.Sequential([
-    layers.Rescaling(1./255),
-    base_model,
-    layers.GlobalAveragePooling2D(),
-    layers.Dropout(0.3),
-    layers.Dense(128, activation='relu'),
-    layers.Dense(5, activation='softmax')  # 5 waste classes
+    layers.Rescaling(1./255), # Normalizes pixel values because mobile net expects pixel values in range [0.0, 1.0]
+    base_model, # MobileNetv2
+    layers.GlobalAveragePooling2D(), # Calculates the average value of each feature map in the input tensor and outputs a tensor that is smaller in size
+    layers.Dropout(0.3), # Helps Prevent overfitting
+    layers.Dense(128, activation='relu'), # Fully connected layer which learns combination of features
+    layers.Dense(6, activation='softmax')  # 6 Neurons for 6 waste classes
     
 ])
 
@@ -62,10 +62,7 @@ model.compile(
 
 model.fit(
     ds_train,
-    epochs=4,
+    epochs=10,
     validation_data=ds_validation)
-
-test_loss, test_acc = model.evaluate(ds_validation, verbose=2)
-print(test_acc)
 
 model.save("models/trash-classifier-model-v0_1.keras")

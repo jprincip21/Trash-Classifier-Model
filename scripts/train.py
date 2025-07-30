@@ -6,8 +6,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Constanst
-IMG_HEIGHT = 256
-IMG_WIDTH = 256
+IMG_HEIGHT = 224
+IMG_WIDTH = 224
 BATCH_SIZE = 32
 
 # Pulling Images
@@ -65,4 +65,4 @@ model.fit(
     epochs=10,
     validation_data=ds_validation)
 
-model.save("models/trash-classifier-model-v0_1.keras")
+model.save("models/trash-classifier-model-v0_2.keras")

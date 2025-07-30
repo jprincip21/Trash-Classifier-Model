@@ -7,8 +7,8 @@ import os
 import matplotlib.pyplot as plt
 
 # Constanst
-IMG_HEIGHT = 256
-IMG_WIDTH = 256
+IMG_HEIGHT = 224
+IMG_WIDTH = 224
 BATCH_SIZE = 1
 TEST_DIR = "data/testing"
 

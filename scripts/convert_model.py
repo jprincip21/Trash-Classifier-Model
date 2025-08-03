@@ -3,11 +3,11 @@ import keras
 from keras import layers
 import numpy as np
 
-loaded_model = keras.models.load_model("models/trash-classifier-model-v0_1.keras")
+loaded_model = keras.models.load_model("models/trash-classifier-model-v0_2.keras")
 
 converter = tf.lite.TFLiteConverter.from_keras_model(model=loaded_model)
 
 model_tflite = converter.convert()
 
-with open("models/trash-classifier-model-v0_1.tflite", "wb") as f:
+with open("models/trash-classifier-model-v0_2.tflite", "wb") as f:
     f.write(model_tflite)

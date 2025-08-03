@@ -1,9 +1,7 @@
 import tensorflow as tf
 import keras
 from keras import layers
-import numpy as np
 
-import matplotlib.pyplot as plt
 
 # Constanst
 IMG_HEIGHT = 224

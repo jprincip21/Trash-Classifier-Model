@@ -13,7 +13,7 @@ BATCH_SIZE = 1
 TEST_DIR = "data/testing"
 
 # Load Model
-loaded_model = keras.models.load_model("models/trash-classifier-model-v0_1.keras")
+loaded_model = keras.models.load_model("models/trash-classifier-model-v0_2.keras")
 
 ds_test = keras.preprocessing.image_dataset_from_directory(
     TEST_DIR,
@@ -33,6 +33,7 @@ print("Loss: ", test_loss)
 
 # Predict and display results
 for images, labels in ds_test.take(6):
+    print(images.shape)
     predictions = loaded_model.predict(images)
     predicted_class_idx = np.argmax(predictions, axis=1)[0]
     true_class_idx = np.argmax(labels.numpy(), axis=1)[0]

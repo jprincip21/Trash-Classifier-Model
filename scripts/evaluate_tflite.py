@@ -23,7 +23,9 @@ def preprocess_image(image_path, input_shape):
     input_data = np.array(image, dtype=np.float32)
 
     # Normalize if your model expects normalized input [0,1]
-    input_data = input_data / 255.0
+    # input_data = input_data / 255.0
+
+    # NO NEED TO DO THIS, Model does it in first layer
 
     # Add batch dimension
     input_data = np.expand_dims(input_data, axis=0)

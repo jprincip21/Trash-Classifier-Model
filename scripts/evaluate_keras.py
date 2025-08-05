@@ -36,6 +36,7 @@ for images, labels in ds_test.take(6):
     print(images.shape)
     predictions = loaded_model.predict(images)
     predicted_class_idx = np.argmax(predictions, axis=1)[0]
+    confidence = predictions[0][predicted_class_idx]  
     true_class_idx = np.argmax(labels.numpy(), axis=1)[0]
 
-    print(f"Predicted: {class_names[predicted_class_idx]}, True: {class_names[true_class_idx]}")
+    print(f"Predicted: {class_names[predicted_class_idx]}, (Confidence {confidence}) True: {class_names[true_class_idx]}")
